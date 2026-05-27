@@ -8,15 +8,15 @@ void SimpleBF::Interpret(const std::string& source)
     {
         switch (source[i])
         {
-            case '>': cellIndex++; break;
-            case '<': cellIndex--; break;
-            case '+': cells[cellIndex]++; break;
-            case '-': cells[cellIndex]--; break;
-            case '.': std::putchar(static_cast<char>(cells[cellIndex])); break;
-            case ',': cells[cellIndex] = std::getchar(); break;
+            case '>': cellPointer++; break;
+            case '<': cellPointer--; break;
+            case '+': (*cellPointer)++; break;
+            case '-': (*cellPointer)--; break;
+            case '.': std::putchar(*cellPointer); break;
+            case ',': *cellPointer = std::getchar(); break;
             case '[':
             {
-                if (cells[cellIndex] != 0) break;
+                if (*cellPointer) break;
 
                 ++i;
                 for (int depth = 1; depth > 0; ++i)
@@ -29,7 +29,7 @@ void SimpleBF::Interpret(const std::string& source)
             }
             case ']':
             {
-                if (cells[cellIndex] == 0) break;
+                if (!*cellPointer) break;
 
                 --i;
                 for (int depth = 1; depth > 0; --i)

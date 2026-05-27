@@ -8,7 +8,7 @@ class SimpleBF
 {
 private:
     uint8_t cells[30000] = {};
-    unsigned cellIndex = 0;
+    uint8_t* cellPointer = cells;
 public:
     void Interpret(const std::string& source);
 };
